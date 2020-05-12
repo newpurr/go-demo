@@ -5,6 +5,12 @@ import "fmt"
 func Hello() string {
 	return "Hello, world"
 }
+func Hello2(name string) string {
+	if name == "" {
+		name = "World"
+	}
+	return "Hello, " + name
+}
 
 func main() {
 	// int float互转
