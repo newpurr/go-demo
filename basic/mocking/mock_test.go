@@ -18,6 +18,9 @@ func Countdown(out io.Writer) {
 }
 
 func TestCountdown(t *testing.T) {
+	// 使用bytes.Buffer来模拟fmt.Println默认的io.Writer实现，
+	// 这样对于fmt.Println函数我们可以很好的做到测试，
+	// 如果不做mock，标准输出的数据不好测试
 	buffer := &bytes.Buffer{}
 
 	Countdown(buffer)
