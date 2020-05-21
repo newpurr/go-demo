@@ -21,8 +21,8 @@ func (s *StubPlayerStore) GetPlayerScore(name string) int {
 }
 
 func TestLeague(t *testing.T) {
-	store := StubPlayerStore{}
-	server := NewPlayerServer(&store)
+	store := NewInMemoryPlayerStore()
+	server := NewPlayerServer(store)
 
 	t.Run("it returns 200 on /league", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/league", nil)
