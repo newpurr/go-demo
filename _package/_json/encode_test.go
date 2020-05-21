@@ -8,6 +8,8 @@ import (
 	jsoniter "github.com/json-iterator/go"
 )
 
+// https://blog.csdn.net/kingmax54212008/article/details/77869972
+
 // 临时忽略字段
 func TestIgnoreField(t *testing.T) {
 	type User struct {
