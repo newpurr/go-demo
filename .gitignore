@@ -17,3 +17,9 @@
 # vendor/
 
 /.idea/
+basic/io/golang/*
+basic/io/file.txt
+basic/io/file1.txt
+basic/io/file2.txt
+basic/io/test.xls
+basic/io/ioutilWriteFile.txt
