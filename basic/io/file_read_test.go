@@ -49,6 +49,7 @@ func TestBufio(t *testing.T) {
 		defer func(file *os.File) { file.Close() }(file)
 	}
 
+	// 我们使用了bufio.Reader 。每次都会在buf 大小允许的范围内尽量读取多的字节，从而减少read() 系统调用的次数。
 	// NewReader创建一个具有默认大小缓冲、从r读取的*Reader。
 	read1 := bufio.NewReader(file)
 
