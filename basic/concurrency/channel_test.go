@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"testing"
+	"time"
 )
 
 func TestChannelAndSelect(t *testing.T) {
@@ -64,4 +65,24 @@ func TestChannel(t *testing.T) {
 	fmt.Println("send over.")
 
 	<-exit // 等待退出通知。
+}
+
+func TestProducerAndConsumer(t *testing.T) {
+	infos := make(chan int, 10)
+	var producer = func(index int) {
+		infos <- index
+	}
+	var consumer = func(index int) {
+		fmt.Println("consumer: ", index, "receive: ", <-infos)
+	}
+
+	for i := 0; i < 10; i++ {
+		go producer(i)
+	}
+
+	for i := 0; i < 10; i++ {
+		go consumer(i)
+	}
+
+	time.Sleep(20 * time.Second)
 }

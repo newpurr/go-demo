@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"sync"
 	"testing"
 	"time"
 )
@@ -129,4 +130,33 @@ func TestContextValue(t *testing.T) {
 
 	// 为了检测监控过是否停止，如果没有监控输出，就表示停止了
 	time.Sleep(5 * time.Second)
+}
+
+func TestLifecycle(t *testing.T) {
+	parent := context.Background()
+
+	ctx, cancel := context.WithCancel(parent)
+
+	runTimes := 0
+
+	var wg sync.WaitGroup
+
+	wg.Add(1)
+	go func(wg *sync.WaitGroup) {
+		defer wg.Done()
+		for {
+			select {
+			case <-ctx.Done():
+				fmt.Println("Done")
+				return
+			default:
+				fmt.Println("Running Times :", runTimes)
+				runTimes++
+			}
+			if runTimes > 100 {
+				cancel()
+			}
+		}
+	}(&wg)
+	wg.Wait()
 }
