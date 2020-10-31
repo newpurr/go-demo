@@ -14,6 +14,14 @@ import (
 	"github.com/thinkeridea/go-extend/exbytes"
 )
 
+//  https://blog.thinkeridea.com/201901/go/you_ya_de_du_qu_http_qing_qiu_huo_xiang_ying_de_shu_ju.html
+
+// buffer := bytes.NewBuffer(make([]byte, 4096))
+// _, err := io.Copy(buffer, request.Body)
+// if err !=nil{
+//    return nil, err
+// }
+
 type Adapter struct {
 	pool sync.Pool
 }
