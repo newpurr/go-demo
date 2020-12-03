@@ -10,5 +10,6 @@ require (
 	github.com/spf13/cast v1.3.1
 	github.com/stretchr/testify v1.5.1
 	github.com/uniplaces/carbon v0.1.6
+	golang.org/x/sync v0.0.0-20190423024810-112230192c58
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 )
