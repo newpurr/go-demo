@@ -4,6 +4,7 @@ import (
 	"log"
 	"math/rand"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -31,11 +32,18 @@ func TestMutex(t *testing.T) {
 		log.Fatal(err)
 	}
 	defer cli.Close()
-	go useLock(cli, 1)  // 测试锁
-	go useLock(cli2, 2) // 测试锁
+	wg := &sync.WaitGroup{}
+	wg.Add(2)
+	go func() {
+		useLock(cli, 1) // 测试锁
+		wg.Done()
+	}()
+	go func() {
+		useLock(cli2, 2) // 测试锁
+		wg.Done()
+	}()
 
-	// 等待一段时间
-	time.Sleep(time.Duration(rand.Intn(2)) * time.Second)
+	wg.Wait()
 }
 
 func useLock(cli *clientv3.Client, num int) {
@@ -54,7 +62,7 @@ func useLock(cli *clientv3.Client, num int) {
 	log.Println("acquired lock", num)
 
 	// 等待一段时间
-	time.Sleep(time.Duration(rand.Intn(1)) * time.Second)
+	time.Sleep(time.Duration(rand.Intn(3)) * time.Second)
 	locker.Unlock() // 释放锁
 
 	log.Println("released lock", num)
