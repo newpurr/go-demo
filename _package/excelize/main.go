@@ -24,7 +24,7 @@ func main() {
 	// }
 
 	f2 := excelize.NewFile()
-	size := 40000
+	size := 400
 	wg := sync.WaitGroup{}
 	wg.Add(4)
 	go func() {
@@ -36,21 +36,21 @@ func main() {
 	}()
 	go func() {
 		defer wg.Done()
-		for i := 100; i < 2*size; i++ {
+		for i := size; i < 2*size; i++ {
 			fmt.Println("A" + strconv.Itoa(i))
 			f2.SetCellValue("Sheet1", "A"+strconv.Itoa(i), i)
 		}
 	}()
 	go func() {
 		defer wg.Done()
-		for i := 100; i < 3*size; i++ {
+		for i := 2*size; i < 3*size; i++ {
 			fmt.Println("A" + strconv.Itoa(i))
 			f2.SetCellValue("Sheet1", "A"+strconv.Itoa(i), i)
 		}
 	}()
 	go func() {
 		defer wg.Done()
-		for i := 100; i < 4*size; i++ {
+		for i := 3*size; i < 4*size; i++ {
 			fmt.Println("A" + strconv.Itoa(i))
 			f2.SetCellValue("Sheet1", "A"+strconv.Itoa(i), i)
 		}
