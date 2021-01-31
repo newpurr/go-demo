@@ -60,7 +60,7 @@ func TestRequestGetWithHystrix(t *testing.T) {
 	)
 
 	// Use the clients GET method to create and execute the request
-	res, err := client.Get("http://google.com", nil)
+	res, err := client.Get("https://www.google.com.hk/?gws_rd=ssl", nil)
 	if err != nil {
 		fmt.Println("error2:", err)
 		panic(err)
