@@ -86,3 +86,21 @@ func TestProducerAndConsumer(t *testing.T) {
 
 	time.Sleep(20 * time.Second)
 }
+
+func TestClose(t *testing.T) {
+	flagsChannel := make(chan struct{}, 0)
+
+	for i := 0; i < 10; i++ {
+		go func(i int) {
+			fmt.Println("运动员", i, "准备完毕")
+			<-flagsChannel
+
+			fmt.Println("运动员", i, "冲刺")
+		}(i)
+	}
+
+	fmt.Println("预备")
+	time.Sleep(2 * time.Second)
+	close(flagsChannel)
+	fmt.Println("跑")
+}
