@@ -40,3 +40,10 @@ func TestArrayIteration(t *testing.T) {
 	}
 	fmt.Println("slice共享同一块区域,slice为引用类型,如果多个slice指向相同底层数组，其中一个的值改变会影响全部slice")
 }
+
+func TestSlcRange(t *testing.T) {
+	var slc = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
+
+	// slice截取的切片范围是[j,k)范围，也就是说从下标J开始截取至K前一个索引，不包含K索引k
+	fmt.Println(slc[0:10], slc[0:1], slc[2:2], slc[2:10])
+}
