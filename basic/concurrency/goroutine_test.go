@@ -1,10 +1,12 @@
 package concurrency
 
 import (
+	"fmt"
 	"math"
 	"runtime"
 	"sync"
 	"testing"
+	"time"
 )
 
 var x int64
@@ -33,4 +35,21 @@ func TestGorountine(t *testing.T) {
 	}
 
 	wg.Wait()
+}
+
+func TestWg(t *testing.T) {
+	var wg sync.WaitGroup
+	wg.Add(1)
+
+	for i := 0; i < 10; i++ {
+		go func(i int) {
+			fmt.Println("协程:", i, "等待执行信号")
+			wg.Wait()
+			fmt.Println("协程:", i, "接收到执行信号，开始执行")
+		}(i)
+	}
+
+	time.Sleep(time.Second)
+	fmt.Println("主协程发出信号")
+	wg.Done()
 }
