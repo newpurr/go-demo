@@ -2,6 +2,7 @@ package concurrency_primitives
 
 import (
 	"context"
+	"fmt"
 	"github.com/marusama/cyclicbarrier"
 	"golang.org/x/sync/semaphore"
 	"math/rand"
@@ -12,6 +13,8 @@ import (
 )
 
 // CyclicBarrier允许一组 goroutine 彼此等待，到达一个共同的执行点。同时，因为它可以被重复使用，所以叫循环栅栏。具体的机制是，大家都在栅栏前等待，等全部都到齐了，就抬起栅栏放行
+// CyclicBarrier（循环屏障） 直译为可循环使用（Cyclic）的屏障（Barrier）。它可以让一组协程到达一个屏障（同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续工作
+// https://juejin.cn/post/6844903959837016071
 
 // 定义水分子合成的辅助数据结构
 type H2O struct {
@@ -23,7 +26,8 @@ type H2O struct {
 func (h2o *H2O) hydrogen(releaseHydrogen func()) {
 	h2o.semaH.Acquire(context.Background(), 1)
 
-	releaseHydrogen()                 // 输出H
+	releaseHydrogen() // 输出H
+	fmt.Println("制造出一个H，等待成员全部到齐后，栅栏放行")
 	h2o.b.Await(context.Background()) //等待栅栏放行
 	h2o.semaH.Release(1)              // 释放氢原子空槽
 }
@@ -31,7 +35,8 @@ func (h2o *H2O) hydrogen(releaseHydrogen func()) {
 func (h2o *H2O) oxygen(releaseOxygen func()) {
 	h2o.semaO.Acquire(context.Background(), 1)
 
-	releaseOxygen()                   // 输出O
+	releaseOxygen() // 输出O
+	fmt.Println("制造出一个O，等待成员全部到齐后，栅栏放行")
 	h2o.b.Await(context.Background()) //等待栅栏放行
 	h2o.semaO.Release(1)              // 释放氢原子空槽
 }
@@ -40,7 +45,11 @@ func New() *H2O {
 	return &H2O{
 		semaH: semaphore.NewWeighted(2), //氢原子需要两个
 		semaO: semaphore.NewWeighted(1), // 氧原子需要一个
-		b:     cyclicbarrier.New(3),     // 需要三个原子才能合成
+		//b:     cyclicbarrier.New(3),     // 需要三个原子才能合成
+		b: cyclicbarrier.NewWithAction(3, func() error {
+			fmt.Println("本组栅栏等待完毕")
+			return nil
+		}), // 需要三个原子才能合成
 	}
 }
 
