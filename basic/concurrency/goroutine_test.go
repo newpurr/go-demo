@@ -53,3 +53,49 @@ func TestWg(t *testing.T) {
 	fmt.Println("主协程发出信号")
 	wg.Done()
 }
+
+const (
+	Cat = iota
+	Dog
+	Foo
+	Bar
+)
+
+// 使用N个Goroutine依次输出cat dog foo bar 100次
+func TestChoreography(t *testing.T) {
+
+	chMap := make(map[int]chan string)
+	chMap[Cat] = make(chan string, 1)
+	chMap[Dog] = make(chan string, 1)
+	chMap[Foo] = make(chan string, 1)
+	chMap[Bar] = make(chan string, 1)
+
+	for i, c := range chMap {
+		go func(i int, c chan string) {
+			for {
+				c <- getName(i)
+			}
+		}(i, c)
+	}
+
+	for i := 0; i < 100; i++ {
+		fmt.Println(<-chMap[Cat])
+		fmt.Println(<-chMap[Dog])
+		fmt.Println(<-chMap[Foo])
+		fmt.Println(<-chMap[Bar])
+	}
+}
+
+func getName(i int) string {
+	switch i {
+	case Cat:
+		return "Cat"
+	case Dog:
+		return "Dog"
+	case Foo:
+		return "Foo"
+	case Bar:
+		return "Bar"
+	}
+	return ""
+}
