@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/360EntSecGroup-Skylar/excelize v1.4.1 // indirect
+	github.com/360EntSecGroup-Skylar/excelize/v2 v2.3.2 // indirect
 	github.com/alibaba/sentinel-golang v0.6.1
 	github.com/coreos/etcd v3.3.25+incompatible
 	github.com/coreos/go-semver v0.3.0 // indirect
@@ -21,7 +22,7 @@ require (
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/sirupsen/logrus v1.7.0 // indirect
 	github.com/spf13/cast v1.3.1
-	github.com/stretchr/testify v1.5.1
+	github.com/stretchr/testify v1.6.1
 	github.com/thinkeridea/go-extend v1.2.2 // indirect
 	github.com/uniplaces/carbon v0.1.6
 	go.uber.org/zap v1.16.0 // indirect

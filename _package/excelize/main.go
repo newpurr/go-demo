@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/360EntSecGroup-Skylar/excelize"
+	"github.com/360EntSecGroup-Skylar/excelize/v2"
 )
 
 // https://xuri.me/excelize/zh-hans/base/installation.html#NewFile
@@ -43,14 +43,14 @@ func main() {
 	}()
 	go func() {
 		defer wg.Done()
-		for i := 2*size; i < 3*size; i++ {
+		for i := 2 * size; i < 3*size; i++ {
 			fmt.Println("A" + strconv.Itoa(i))
 			f2.SetCellValue("Sheet1", "A"+strconv.Itoa(i), i)
 		}
 	}()
 	go func() {
 		defer wg.Done()
-		for i := 3*size; i < 4*size; i++ {
+		for i := 3 * size; i < 4*size; i++ {
 			fmt.Println("A" + strconv.Itoa(i))
 			f2.SetCellValue("Sheet1", "A"+strconv.Itoa(i), i)
 		}
