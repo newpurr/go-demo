@@ -5,6 +5,7 @@ go 1.13
 require (
 	github.com/360EntSecGroup-Skylar/excelize v1.4.1 // indirect
 	github.com/360EntSecGroup-Skylar/excelize/v2 v2.3.2 // indirect
+	github.com/40t/go-sniffer v0.0.0-20201023123058-add66245ba50 // indirect
 	github.com/alibaba/sentinel-golang v0.6.1
 	github.com/coreos/etcd v3.3.25+incompatible
 	github.com/coreos/go-semver v0.3.0 // indirect
@@ -15,6 +16,7 @@ require (
 	github.com/gogo/protobuf v1.3.1 // indirect
 	github.com/gojektech/heimdall/v6 v6.1.0 // indirect
 	github.com/golang/protobuf v1.4.3 // indirect
+	github.com/google/gopacket v1.1.19 // indirect
 	github.com/google/uuid v1.1.2 // indirect
 	github.com/jmoiron/sqlx v1.3.1 // indirect
 	github.com/json-iterator/go v1.1.10 // indirect
@@ -28,6 +30,7 @@ require (
 	github.com/uniplaces/carbon v0.1.6
 	go.uber.org/zap v1.16.0 // indirect
 	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a
+	golang.org/x/sys v0.0.0-20210309074719-68d13333faf2 // indirect
 	google.golang.org/genproto v0.0.0-20201207150747-9ee31aac76e7 // indirectct
 	google.golang.org/grpc v1.27.0
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect

@@ -39,7 +39,7 @@ func TestFindAllString(t *testing.T) {
 		fmt.Println(err)
 		return
 	}
-	match := compile.FindAllString(str, 2)
+	match := compile.FindAllString(str, 3)
 
 	fmt.Println("Match: ", match, " Error: ", err)
 }
