@@ -12,6 +12,7 @@ require (
 	github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f // indirect
 	github.com/davecgh/go-spew v1.1.1
 	github.com/garyburd/redigo v1.6.2 // indirect
+	github.com/go-errors/errors v1.0.1 // indirect
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
 	github.com/gogo/protobuf v1.3.1 // indirect
 	github.com/gojektech/heimdall/v6 v6.1.0 // indirect
