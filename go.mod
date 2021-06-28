@@ -32,8 +32,8 @@ require (
 	github.com/thinkeridea/go-extend v1.2.2 // indirect
 	github.com/uniplaces/carbon v0.1.6
 	go.uber.org/zap v1.16.0 // indirect
-	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a
-	golang.org/x/sys v0.0.0-20210309074719-68d13333faf2 // indirect
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+	golang.org/x/tools v0.1.4 // indirect
 	google.golang.org/genproto v0.0.0-20201207150747-9ee31aac76e7 // indirectct
 	google.golang.org/grpc v1.27.0
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
