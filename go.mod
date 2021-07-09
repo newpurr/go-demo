@@ -3,6 +3,7 @@ module go-demo
 go 1.13
 
 require (
+	github.com/asaskevich/EventBus v0.0.0-20200907212545-49d423059eef // indirect
 	github.com/360EntSecGroup-Skylar/excelize v1.4.1 // indirect
 	github.com/360EntSecGroup-Skylar/excelize/v2 v2.3.2 // indirect
 	github.com/40t/go-sniffer v0.0.0-20201023123058-add66245ba50 // indirect
