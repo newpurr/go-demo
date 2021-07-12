@@ -3,11 +3,12 @@ module go-demo
 go 1.13
 
 require (
-	github.com/asaskevich/EventBus v0.0.0-20200907212545-49d423059eef // indirect
 	github.com/360EntSecGroup-Skylar/excelize v1.4.1 // indirect
 	github.com/360EntSecGroup-Skylar/excelize/v2 v2.3.2 // indirect
 	github.com/40t/go-sniffer v0.0.0-20201023123058-add66245ba50 // indirect
 	github.com/alibaba/sentinel-golang v0.6.1
+	github.com/apolloconfig/agollo/v4 v4.0.8 // indirect
+	github.com/asaskevich/EventBus v0.0.0-20200907212545-49d423059eef // indirect
 	github.com/coreos/etcd v3.3.25+incompatible
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f // indirect
