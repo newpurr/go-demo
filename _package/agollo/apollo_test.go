@@ -14,21 +14,22 @@ type CustomChangeListener struct {
 }
 
 func (c *CustomChangeListener) OnChange(changeEvent *storage.ChangeEvent) {
-	fmt.Println(changeEvent)
+	fmt.Println("OnChange", changeEvent)
 }
 
 func (c *CustomChangeListener) OnNewestChange(event *storage.FullChangeEvent) {
-	fmt.Println(event)
+	fmt.Println("OnNewestChange", event)
 }
 
 func TestApollo(t *testing.T) {
 	c := &config.AppConfig{
-		AppID:          "testApplication_yang",
-		Cluster:        "dev",
-		IP:             "http://106.54.227.205:8080",
-		NamespaceName:  "dubbo,product.joe",
-		IsBackupConfig: true,
-		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
+		AppID:            "stock-manage",
+		Cluster:          "dev",
+		IP:               "http://apollo.dev.internal.service.com:80",
+		NamespaceName:    "application,php-base-config",
+		IsBackupConfig:   true,
+		BackupConfigPath: "./",
+		//Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
 	agollo.SetLogger(&DefaultLogger{})
 
@@ -48,7 +49,7 @@ func TestApollo(t *testing.T) {
 		checkKey(n, client)
 	}
 
-	time.Sleep(5 * time.Second)
+	time.Sleep(500 * time.Second)
 }
 
 func checkKey(namespace string, client *agollo.Client) {
