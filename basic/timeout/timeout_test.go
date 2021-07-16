@@ -73,15 +73,16 @@ func TestTimeout12(t *testing.T) {
 
 		select {
 		case <-ctx.Done(): // timeout
-			// 做一些清理工作，这点特别重要；比如： http client 执行超时取消请求时，就是使用这个节点
+			// 做一些清理工作，这点特别重要；比如：http client 执行超时取消请求时，就是使用这个节点
 			go func() { <-ch }() // wait ch return...
 			return result{Err: ctx.Err()}
 		case res := <-ch: // normal case
+			close(ch)
 			return res
 		}
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*3)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*6)
 	defer cancel()
 	res := doWithTimeout(ctx, func(ctx context.Context) result {
 		// 花费8秒执行8次才能读完所欲的body
@@ -97,10 +98,13 @@ func TestTimeout12(t *testing.T) {
 	switch {
 	case ctx.Err() == context.DeadlineExceeded:
 		// handle timeout
+		fmt.Println(ctx.Err())
 	case res.Err != nil:
 		// handle logic error
+		fmt.Println(res.Err)
 	default:
 		// do with result.Val
+		fmt.Println("Success")
 	}
 }
 
